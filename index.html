@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Frontend Mentor | Multi-step form</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <section id="step1--container">
+
+    <section class="sidebar--container">
+
+      <div class="step-info--container">
+        <div class="step-number--container step-number--container-active" id="step1-number--container">
+          <p>1</p>
+        </div>
+
+        <div>
+          <p>STEP 1</p>
+          <p>YOUR INFO</p>
+        </div>
+      </div>
+
+      <div class="step-info--container">
+        <div class="step-number--container" id="step2-number--container">
+          <p>2</p>
+        </div>
+        
+        <div>
+          <p>STEP 2</p>
+          <p>SELECT PLAN</p>
+        </div>
+      </div>
+
+      <div class="step-info--container">
+        <div class="step-number--container" id="step3-number--container">
+          <p>3</p>
+        </div>
+        
+        <div>
+          <p>STEP 3</p>
+          <p>ADD-ONS</p>
+        </div>
+      </div>
+
+      <div class="step-info--container">
+        <div class="step-number--container">
+          <p>4</p>
+        </div>
+        
+        <div>
+          <p>STEP 4</p>
+          <p>SUMMARY</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="personal-info--container">
+      <h2>Personal info</h2>
+      <p>Please provide your name, email address, and phone number</p>
+
+      <form action="">
+        <div class="label--container">
+          <label for="name">Name</label>
+        </div>
+        <input type="text" id="name" name="name" placeholder="e.g. Stephen King">
+
+        <div class="label--container">
+          <label for="email">Email address</label>
+        </div>
+        <input type="email" id="email" name="email" placeholder="e.g. stephenking@lorem.com">
+
+        <div class="label--container">
+          <label for="phone-number">Phone Number</label>
+        </div>
+        <input type="email" id="phone-number" name="phone-number" placeholder="e.g. +1 234 567 890">
+
+      </form>
+
+      <p class="next-step-button--container">
+        <button type="submit" class="next-step-button">Next Step</button>
+      </p>
+    </section>
+
+  </section>
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Jose Jaime Fraire Reyes</a>.
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+</html>
