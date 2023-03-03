@@ -4,6 +4,7 @@
     --gray: hsl(231, 11%, 63%);
     --light-gray: hsl(229, 24%, 87%);
     --marine-blue: hsl(213, 96%, 18%);
+    --magnolia: hsl(217, 100%, 97%);
     --light-blue: hsl(206, 94%, 87%);
     --purple: hsl(243, 100%, 62%);
     --red: hsl(354, 84%, 57%);
@@ -20,7 +21,8 @@ html {
     font-family: 'Ubuntu', sans-serif;
 }
 
-#step1--container {
+#step1--container,
+#step2--container {
     width: 70%;
     height: 650px;
     margin: 50px auto;
@@ -31,6 +33,10 @@ html {
     background: var(--white);
     box-shadow:  -20px 20px 60px #d9d9d9,
                 20px -20px 60px var(--white);
+}
+
+#step2-total--container {
+    display: none;
 }
 
 .sidebar--container {
@@ -84,30 +90,30 @@ html {
     font-weight: bold;
 }
 
-#personal-info--container {
+.info--container {
     width: 70%;
     padding: 30px 40px;
 }
 
-#personal-info--container h2{
+.info--container h2{
     color: var(--marine-blue);
     font-size: 4.0rem;
 }
 
-#personal-info--container p{
+.info--container p{
     margin-top: 15px;
     color: var(--gray);
     font-size: 1.8rem;
 }
 
-#personal-info--container form{
+.info--container form{
     width: 100%;
     margin-top: 15px;
     display: flex;
     flex-direction: column;
 }
 
-#personal-info--container form label{
+.info--container form label{
     margin-bottom: 10px;
     color: var(--marine-blue);
     font-size: 1.6rem;
@@ -171,6 +177,149 @@ input{
 }
 
 .next-step-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.button--container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}  
+
+#plan--container {
+    width: 90%;
+    height: 200px;
+    margin: 50px 0;
+    display: flex;
+    gap: 20px;
+}
+
+.plan-container--item {
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--light-gray);
+}
+
+.plan-container--item:hover {
+    cursor: pointer;
+}
+
+#select-plan--container input{
+    display: none;
+}
+
+#select-plan--container input:checked + .plan-container--item{
+    cursor: pointer;
+    background-color: var(--magnolia);
+    border: 1px solid var(--marine-blue);
+}
+
+.plan-item--icon {
+    width: 50px;
+    height: 50px;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#plan-item1-icon {
+    background-image: url( './assets/images/icon-arcade.svg' );
+}
+
+#plan-item2-icon {
+    background-image: url( './assets/images/icon-advanced.svg' );
+}
+
+#plan-item3-icon {
+    background-image: url( './assets/images/icon-pro.svg' );
+}
+
+#select-plan--container .plan-container--item p:nth-child(2) {
+    margin: 50px 0 -10px 0;
+    color: var(--marine-blue);
+}
+
+#choose-billing {
+    width: 90%;
+    height: 60px;
+    margin: -20px 0 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: var(--magnolia);
+    border-radius: 10px;
+}
+
+#choose-billing p{
+    margin: 0;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    font-size: 13px;
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 26px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 1;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background: #fff;
+    transition: .4s;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.9em;
+    width: 1.9em;
+    border-radius: 16px;
+    left: 1.2px;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px #999999;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--marine-blue);
+    border: 1px solid transparent;
+}
+
+input:checked + .slider:before {
+    transform: translateX(1.5em);
+}
+
+.back-step-button {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--gray);
+}
+
+.back-step-button:hover {
     cursor: pointer;
 }
 
