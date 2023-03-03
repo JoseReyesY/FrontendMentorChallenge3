@@ -43,12 +43,17 @@ function checkInput () {
 
 function checkInputButton () {
     inputList.forEach( ( input ) => {
-        if ( input.value.length === 0 ) {
+        if ( input.value === '' ) {
             // Permite insertar elementos HTML de manera dinámicamente. El primer argumento es para indicar en donde se pondrá el elemento a añadir
             labelContainer[ inputList.indexOf( input ) ].lastElementChild.innerText = 'This field is required';
             input.style.outline = '1px solid hsl(354, 84%, 57%)';
         }
     } );
+
+    if(nameInput.value != '' && emailInput.value != '' && phoneNumberInput.value != ''){
+        stepContainer1.style.display = 'none';
+        stepContainer2.style.display = 'block';
+    }
 }
 
 function goBack () {

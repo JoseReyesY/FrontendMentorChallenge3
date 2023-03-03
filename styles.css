@@ -214,7 +214,7 @@ input{
 #select-plan--container input:checked + .plan-container--item{
     cursor: pointer;
     background-color: var(--magnolia);
-    border: 1px solid var(--marine-blue);
+    border: 1px solid var(--purple);
 }
 
 .plan-item--icon {
@@ -224,6 +224,10 @@ input{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.plan-container--item:hover {
+    border: 1px solid var(--purple);
 }
 
 #plan-item1-icon {
@@ -316,11 +320,13 @@ input:checked + .slider:before {
     background: none;
     border: none;
     font-size: 1.6rem;
+    font-weight: bold;
     color: var(--gray);
 }
 
 .back-step-button:hover {
     cursor: pointer;
+    color: var(--marine-blue);
 }
 
 .attribution { 
