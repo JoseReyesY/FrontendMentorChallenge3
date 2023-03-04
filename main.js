@@ -4,7 +4,10 @@ const emailInput = document.getElementById ( 'email' );
 const phoneNumberInput = document.getElementById ( 'phone-number' );
 const labelContainer = document.querySelectorAll ( '.label--container' );
 const sentButton = document.querySelector( '.next-step-button' );
+const secondStepButton = document.getElementById( 'second-step--button' );
 const goBackButton = document.querySelector( '.back-step-button' );
+const checkboxBilling = document.getElementById( 'checkbox-billing' );
+const onsItemContainer = document.querySelectorAll( 'ons--item' );
 
 const stepContainer1 = document.getElementById( 'step1-total--container' );
 const stepContainer2 = document.getElementById( 'step2-total--container' );
@@ -14,6 +17,7 @@ let inputList = [];
 inputList.push( nameInput, emailInput, phoneNumberInput );
 
 sentButton.addEventListener( 'click', checkInputButton);
+secondStepButton.addEventListener( 'click', choosePlan );
 goBackButton.addEventListener( 'click', goBack );
 
 function checkInput () {
@@ -41,6 +45,8 @@ function checkInput () {
 
 }
 
+checkInput();
+
 function checkInputButton () {
     inputList.forEach( ( input ) => {
         if ( input.value === '' ) {
@@ -56,12 +62,31 @@ function checkInputButton () {
     }
 }
 
+function choosePlan () {
+    const plan1 = document.getElementById( 'plan1' );
+    const plan2 = document.getElementById( 'plan2' );
+    const plan3 = document.getElementById( 'plan3' );
+
+    if ( plan1.checked ) {
+        console.log( 'Se escogió el plan numero 1' );
+    } else if ( plan2.checked ) {
+        console.log( 'Se escogió el plan numero 2.' );
+    } else if ( plan3.checked ) {
+        console.log( 'Se escogió el plan numero 3.' );
+    }
+
+    if ( checkboxBilling.checked ) {
+        console.log( 'Se pagara al año' );
+    } else {
+        console.log( 'Se pagará al mes' );
+    }
+}
+
 function goBack () {
     stepContainer1.style.display = 'block';
     stepContainer2.style.display = 'none';
 }
 
-checkInput();
 
 
 

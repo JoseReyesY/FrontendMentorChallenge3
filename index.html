@@ -84,7 +84,7 @@
             <label for="phone-number">Phone Number</label>
             <span class="warning"></span>
           </div>
-          <input type="email" id="phone-number" name="phone-number" placeholder="e.g. +1 234 567 890">
+          <input type="text" id="phone-number" name="phone-number" placeholder="e.g. +1 234 567 890">
   
         </form>
   
@@ -153,21 +153,21 @@
         <p>You have the option of monthly or yearly billing.</p>
   
         <div id="plan--container">
-          <input type="radio" id="plan1" >
+          <input type="radio" id="plan1" name="plan-group">
           <label class="plan-container--item" for="plan1">
             <span class="plan-item--icon" id="plan-item1-icon"></span>
             <p>Arcade</p>
             <p>$9/mo</p>
           </label>
   
-          <input type="radio" id="plan2">
+          <input type="radio" id="plan2" name="plan-group">
           <label class="plan-container--item" for="plan2">
             <span class="plan-item--icon" id="plan-item2-icon"></span>
             <p>Advanced</p>
             <p>$12/mo</p>
           </label>
   
-          <input type="radio" id="plan3">
+          <input type="radio" id="plan3" name="plan-group">
           <label class="plan-container--item" for="plan3">
             <span class="plan-item--icon" id="plan-item3-icon"></span>
             <p>Pro</p>
@@ -178,7 +178,7 @@
         <div id="choose-billing">
           <p>Monthly</p>
           <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" id="checkbox-billing">
             <span class="slider"></span>
           </label>
           <p>Yearly</p>
@@ -186,7 +186,100 @@
   
         <p class="button--container">
           <button class="back-step-button">Go Back</button>
-          <button type="submit" class="next-step-button">Next Step</button>
+          <button type="submit" class="next-step-button" id="second-step--button">Next Step</button>
+        </p>
+      </section>
+    </div>
+  </section>
+
+  <section id="step3-total--container">
+
+    <div id="step3--container">
+
+      <div class="sidebar--container">
+  
+        <div class="step-info--container">
+          <div class="step-number--container" id="step1-number--container">
+            <p>1</p>
+          </div>
+  
+          <div>
+            <p>STEP 1</p>
+            <p>YOUR INFO</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container" id="step2-number--container">
+            <p>2</p>
+          </div>
+          
+          <div>
+            <p>STEP 2</p>
+            <p>SELECT PLAN</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container step-number--container-active" id="step3-number--container">
+            <p>3</p>
+          </div>
+          
+          <div>
+            <p>STEP 3</p>
+            <p>ADD-ONS</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container">
+            <p>4</p>
+          </div>
+          
+          <div>
+            <p>STEP 4</p>
+            <p>SUMMARY</p>
+          </div>
+        </div>
+  
+      </div>
+  
+      <section class="info--container" id="monthly--container">
+        <h2>Pick add-ons</h2>
+        <p>Add ons help enhace your gaming experience.</p>
+  
+        <div class="ons--container">
+          <div class="ons--item">
+            <input type="checkbox">
+            <div>
+              <p>Online Services</p>
+              <p>Access to multiplayer games</p>
+            </div>
+            <p>+$1/mo</p>
+          </div>
+
+          <div class="ons--item">
+            <input type="checkbox">
+            <div>
+              <p>Larger Storage</p>
+              <p>Extra 1TB of cloud save</p>
+            </div>
+            <p>+$2/mo</p>
+          </div>
+
+          <div class="ons--item">
+            <input type="checkbox">
+            <div>
+              <p>Customizable profile</p>
+              <p>Custom theme on your profile</p>
+            </div>
+            <p>+$2/mo</p>
+          </div>
+        </div>
+  
+        <p class="button--container">
+          <button class="back-step-button">Go Back</button>
+          <button type="submit" class="next-step-button" id="second-step--button">Next Step</button>
         </p>
       </section>
     </div>

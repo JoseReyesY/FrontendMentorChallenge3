@@ -22,7 +22,8 @@ html {
 }
 
 #step1--container,
-#step2--container {
+#step2--container,
+#step3--container {
     width: 70%;
     height: 650px;
     margin: 50px auto;
@@ -35,9 +36,9 @@ html {
                 20px -20px 60px var(--white);
 }
 
-#step2-total--container {
+/* #step2-total--container {
     display: none;
-}
+} */
 
 .sidebar--container {
     width: 40%;
@@ -146,8 +147,8 @@ input{
     font-weight: bold;
 }
 
-#personal-info--container form input:focus{
-    color:  var(--marine-blue);
+.info--container form input:focus{
+    color: var(--marine-blue);
     opacity: 1;
     outline: 1px solid var(--purple);
 }
@@ -310,6 +311,7 @@ input{
 input:checked + .slider {
     background-color: var(--marine-blue);
     border: 1px solid transparent;
+    color: blue;
 }
 
 input:checked + .slider:before {
@@ -328,6 +330,56 @@ input:checked + .slider:before {
     cursor: pointer;
     color: var(--marine-blue);
 }
+
+.ons--container {
+    width: 90%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.ons--item {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+}
+
+#monthly--container .ons--item input{
+    width: 30px;
+    height: 30px;
+    margin: 0 30px;
+}
+
+.ons--item div {
+    width: 220px;
+    margin-right: 120px;
+}
+
+.ons--item p:first-child {
+    margin-top: 5px;
+    color: var(--marine-blue);
+    font-weight: 500;
+}
+
+.ons--item p:nth-child(2) {
+    margin-top: 10px;
+    color: var(--gray);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.ons--item p:nth-child(3) {
+    margin-top: 10px;
+    color: var(--purple);
+    font-weight: 400;
+}
+
 
 .attribution { 
     font-size: 11px; 
