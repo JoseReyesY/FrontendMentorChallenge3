@@ -96,6 +96,10 @@
     </section>
   </section>
 
+
+
+
+
   <section id="step2-total--container">
 
     <div id="step2--container">
@@ -152,7 +156,7 @@
         <h2>Select your plan</h2>
         <p>You have the option of monthly or yearly billing.</p>
   
-        <div id="plan--container">
+        <div class="plan--container" id="monthly-plan--container">
           <input type="radio" id="plan1" name="plan-group">
           <label class="plan-container--item" for="plan1">
             <span class="plan-item--icon" id="plan-item1-icon"></span>
@@ -174,14 +178,37 @@
             <p>$15/mo</p>
           </label>
         </div>
+
+        <div class="plan--container hide" id="yearly-plan--container">
+          <input type="radio" id="plan1" name="plan-group">
+          <label class="plan-container--item" for="plan1">
+            <span class="plan-item--icon" id="plan-item1-icon"></span>
+            <p>Arcade</p>
+            <p>$90/yr</p>
+          </label>
+  
+          <input type="radio" id="plan2" name="plan-group">
+          <label class="plan-container--item" for="plan2">
+            <span class="plan-item--icon" id="plan-item2-icon"></span>
+            <p>Advanced</p>
+            <p>$120/yr</p>
+          </label>
+  
+          <input type="radio" id="plan3" name="plan-group">
+          <label class="plan-container--item" for="plan3">
+            <span class="plan-item--icon" id="plan-item3-icon"></span>
+            <p>Pro</p>
+            <p>$150/yr</p>
+          </label>
+        </div>
   
         <div id="choose-billing">
-          <p>Monthly</p>
+          <p id="monthly-p">Monthly</p>
           <label class="switch">
             <input type="checkbox" id="checkbox-billing">
             <span class="slider"></span>
           </label>
-          <p>Yearly</p>
+          <p id="yearly-p">Yearly</p>
         </div>
   
         <p class="button--container">
@@ -192,7 +219,12 @@
     </div>
   </section>
 
-  <section id="step3-total--container">
+
+
+
+
+
+  <section id="step3-total--container" class="step3-monthly--container">
 
     <div id="step3--container">
 
@@ -250,7 +282,7 @@
   
         <div class="ons--container">
           <div class="ons--item" id="item1">
-            <input type="checkbox" id="online-services-cb">
+            <input type="checkbox" id="online-services-cb-monthly">
             <div>
               <p>Online Services</p>
               <p>Access to multiplayer games</p>
@@ -259,7 +291,7 @@
           </div>
 
           <div class="ons--item" id="item2">
-            <input type="checkbox" id="larger-storage-cb">
+            <input type="checkbox" id="larger-storage-cb-monthly">
             <div>
               <p>Larger Storage</p>
               <p>Extra 1TB of cloud save</p>
@@ -268,7 +300,7 @@
           </div>
 
           <div class="ons--item" id="item3">
-            <input type="checkbox" id="customizable-profile-cb">
+            <input type="checkbox" id="customizable-profile-cb-monthly">
             <div>
               <p>Customizable profile</p>
               <p>Custom theme on your profile</p>
@@ -280,6 +312,173 @@
         <p class="button--container">
           <button class="back-step-button">Go Back</button>
           <button type="submit" class="next-step-button" id="third-step--button">Next Step</button>
+        </p>
+      </section>
+    </div>
+  </section>
+
+  <section id="step3-total--container" class="step3-yearly--container">
+
+    <div id="step3--container">
+
+      <div class="sidebar--container">
+  
+        <div class="step-info--container">
+          <div class="step-number--container" id="step1-number--container">
+            <p>1</p>
+          </div>
+  
+          <div>
+            <p>STEP 1</p>
+            <p>YOUR INFO</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container" id="step2-number--container">
+            <p>2</p>
+          </div>
+          
+          <div>
+            <p>STEP 2</p>
+            <p>SELECT PLAN</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container step-number--container-active" id="step3-number--container">
+            <p>3</p>
+          </div>
+          
+          <div>
+            <p>STEP 3</p>
+            <p>ADD-ONS</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container">
+            <p>4</p>
+          </div>
+          
+          <div>
+            <p>STEP 4</p>
+            <p>SUMMARY</p>
+          </div>
+        </div>
+  
+      </div>
+  
+      <section class="info--container" id="yearly--container">
+        <h2>Pick add-ons</h2>
+        <p>Add ons help enhace your gaming experience.</p>
+  
+        <div class="ons--container">
+          <div class="ons--item" id="item1">
+            <input type="checkbox" id="online-services-cb-yearly">
+            <div>
+              <p>Online Services</p>
+              <p>Access to multiplayer games</p>
+            </div>
+            <p>+$10/ye</p>
+          </div>
+
+          <div class="ons--item" id="item2">
+            <input type="checkbox" id="larger-storage-cb-yearly">
+            <div>
+              <p>Larger Storage</p>
+              <p>Extra 1TB of cloud save</p>
+            </div>
+            <p>+$20/ye</p>
+          </div>
+
+          <div class="ons--item" id="item3">
+            <input type="checkbox" id="customizable-profile-cb-yearly">
+            <div>
+              <p>Customizable profile</p>
+              <p>Custom theme on your profile</p>
+            </div>
+            <p>+$20/ye</p>
+          </div>
+        </div>
+  
+        <p class="button--container">
+          <button class="back-step-button">Go Back</button>
+          <button type="submit" class="next-step-button" id="third-step--button">Next Step</button>
+        </p>
+      </section>
+    </div>
+  </section>
+
+  <section id="step4-total--container" class="step4-monthly--container">
+
+    <div id="step4--container">
+
+      <div class="sidebar--container">
+  
+        <div class="step-info--container">
+          <div class="step-number--container" id="step1-number--container">
+            <p>1</p>
+          </div>
+  
+          <div>
+            <p>STEP 1</p>
+            <p>YOUR INFO</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container" id="step2-number--container">
+            <p>2</p>
+          </div>
+          
+          <div>
+            <p>STEP 2</p>
+            <p>SELECT PLAN</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container" id="step3-number--container">
+            <p>3</p>
+          </div>
+          
+          <div>
+            <p>STEP 3</p>
+            <p>ADD-ONS</p>
+          </div>
+        </div>
+  
+        <div class="step-info--container">
+          <div class="step-number--container step-number--container-active" id="step3-number--container">
+            <p>4</p>
+          </div>
+          
+          <div>
+            <p>STEP 4</p>
+            <p>SUMMARY</p>
+          </div>
+        </div>
+  
+      </div>
+  
+      <section class="info--container" id="monthly--container">
+        <h2>Finishing up</h2>
+        <p>Double check everything looks OK before confirming.</p>
+
+        <div id="plan-info--container">
+          <!-- <div id="name-price--container">
+            <div>
+              <p id="plan-name">Arcade (Monthly)</p>
+              <a href="">Change</a>
+            </div>
+            <p>$9/mo</p>
+          </div> -->
+        </div>
+  
+        <p class="button--container">
+          <button class="back-step-button">Go Back</button>
+          <button type="submit" class="confirm--button" id="confirm--button">Confirm</button>
         </p>
       </section>
     </div>
