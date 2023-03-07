@@ -30,8 +30,8 @@ const largerStorageCbYearly = document.getElementById( 'larger-storage-cb-yearly
 const customizableProfileCbYearly = document.getElementById( 'customizable-profile-cb-yearly' );
 
 // contenedores de pago mensual o anual
-const stepContainer2Monthly = document.querySelector( '.step2-monthly--container' );
-const stepContainer2Yearly = document.querySelector( '.step2-yearly--container' );
+const stepContainer2Monthly = document.getElementById( 'monthly-plan--container' );
+const stepContainer2Yearly = document.getElementById( 'yearly-plan--container' );
 
 const stepContainer3Monthly = document.querySelector( '.step3-monthly--container' );
 const stepContainer3Yearly = document.querySelector( '.step3-yearly--container' );
@@ -43,6 +43,9 @@ const stepContainer4Yearly = document.querySelector( '.step4-yearly--container' 
 const plan1 = document.getElementById( 'plan1' );
 const plan2 = document.getElementById( 'plan2' );
 const plan3 = document.getElementById( 'plan3' );
+const plan4 = document.getElementById( 'plan4' );
+const plan5 = document.getElementById( 'plan5' );
+const plan6 = document.getElementById( 'plan6' );
 
 let isStep2Active = false;
 let isStep3Active = false;
@@ -139,11 +142,11 @@ function checkInputButton () {
 
 // Funcion para escoger un plan y su tipo de pago
 function choosePlan () {
-    if ( plan1.checked ) {
+    if ( plan1.checked || plan4.cheked) {
         planSelected = 'Arcade';
-    } else if ( plan2.checked ) {
+    } else if ( plan2.checked || plan5.checked ) {
         planSelected = 'Advanced';
-    } else if ( plan3.checked ) {
+    } else if ( plan3.checked || plan6.checked) {
         planSelected = 'Pro';
     }
 }
@@ -154,18 +157,18 @@ function chooseBilling () {
     let yearlyPlanContainer = document.getElementById( 'yearly-plan--container' );
     let monthlyP = document.getElementById( 'monthly-p' );
     let yearlyP = document.getElementById( 'yearly-p' );
+
     // Mostrar los diferentes tipos de ons dependiendo del tipo de facturacion
     if ( !billingCb.checked ) {
-        console.log( 'Se pagara mensual' );
+        billing = 'Monthly';
         yearlyPlanContainer.classList.add( 'hide' );
         monthlyPlanContainer.classList.remove( 'hide' );
         monthlyP.style.color = 'hsl(213, 96%, 18%)';
         yearlyP.style.color = 'hsl(231, 11%, 63%)';
-    } else {
-        stepContainer3Yearly.style.display = 'block';
+    } else if ( billingCb.checked ){
+        billing = 'Yearly';
         monthlyPlanContainer.classList.add( 'hide' );
         yearlyPlanContainer.classList.remove( 'hide' );
-        console.log( 'Se pagara anual' );
         yearlyP.style.color = 'hsl(213, 96%, 18%)';
         monthlyP.style.color = 'hsl(231, 11%, 63%)';
     }
@@ -173,13 +176,19 @@ function chooseBilling () {
 
 function validatePlan () {
     choosePlan();
+    chooseBilling();
+
+    stepContainer2.style.display = 'none';
+
     // Pasar de paso unicamente cuando se haya seleccionado algun plan
     if ( plan1.checked || plan2.checked || plan3.checked ) {
-        stepContainer2.style.display = 'none';
-        isStep2Active = false;
-        isStep3Active = true;
+        stepContainer3Monthly.style.display = 'block';
+    } else if ( plan4.checked || plan5.checked || plan6.checked ) {
+        stepContainer3Yearly.style.display = 'block';
     }
-    chooseBilling();
+
+    isStep2Active = false;
+    isStep3Active = true;
 }
 
 // Funcion para añadir los complementos
@@ -235,22 +244,38 @@ function showInfo () {
 
 // Funcion para regresar un paso
 function goBack () {
-    // let isStep1 = false;
+
     if ( isStep2Active === true ) {
         stepContainer1.style.display = 'block';
         stepContainer2.style.display = 'none';
+        stepContainer3.style.display = 'none';
+        console.log('ok')
     } else if ( isStep3Active === true ) {
         isStep2Active = true;
 
         stepContainer2.style.display = 'block';
-        stepContainer3.style.display = 'none';
+        stepContainer3.style.display = 'none'; 
+        stepContainer3Yearly.style.display = 'none'; 
 
-        checkboxList.forEach( ( checkbox ) => {
-            checkbox.checked = false;
-        })
-    } else if ( isStep4Active === true ) {
-        console.log(isStep4Active)
+        // checkboxList.forEach( ( checkbox ) => {
+        //     checkbox.checked = false;
+        // })
     }
+    // if ( isStep2Active === true ) {
+    //     stepContainer1.style.display = 'block';
+    //     stepContainer2.style.display = 'none';
+    // } else if ( isStep3Active === true ) {
+    //     isStep2Active = true;
+
+    //     stepContainer2.style.display = 'block';
+    //     stepContainer3.style.display = 'none';
+
+    //     checkboxList.forEach( ( checkbox ) => {
+    //         checkbox.checked = false;
+    //     })
+    // } else if ( isStep4Active === true ) {
+    //     console.log(isStep4Active)
+    // }
 }
 
 

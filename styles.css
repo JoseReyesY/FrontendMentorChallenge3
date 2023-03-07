@@ -221,6 +221,13 @@ input:hover {
 
 .plan-container--item:hover {
     cursor: pointer;
+    border: 1px solid var(--purple);
+}
+
+.plan--container p:nth-child(4) {
+    margin-top: 5px;
+    color: var(--marine-blue);
+    font-size: 1.4rem;
 }
 
 #select-plan--container input{
@@ -240,10 +247,6 @@ input:hover {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-.plan-container--item:hover {
-    border: 1px solid var(--purple);
 }
 
 #plan-item1-icon {
@@ -361,7 +364,8 @@ input:checked + .slider:before {
     margin-top: 50px;
 }
 
-#monthly--container .button--container {
+#monthly--container .button--container,
+#yearly--container .button--container {
     margin-top: 55px;
 }
 
