@@ -410,11 +410,15 @@ input:checked + .slider:before {
 
 #plan-info--container {
     width: 90%;
-    height: 300px;
+    height: auto;
     margin-top: 50px;
     padding: 10px 30px 0 30px;
     border-radius: 10px;
     background-color: var(--magnolia);
+}
+
+#plan-info--container div:last-child {
+    padding-bottom: 10px;
 }
 
 #name-price--container {
@@ -425,7 +429,7 @@ input:checked + .slider:before {
     border-bottom: 1px solid var(--light-gray);
 }
 
-#name-price--container p{
+#name-price--container p {
     color: var(--marine-blue);
     font-weight: bold;
 }
@@ -435,7 +439,7 @@ input:checked + .slider:before {
     color: var(--marine-blue);
 }
 
-#plan-info--container div a{
+#plan-info--container div a {
     font-size: 1.4rem;
     color: var(--gray);
 }
@@ -449,6 +453,33 @@ input:checked + .slider:before {
     color: var(--white);
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.6rem;
+}
+
+#ons-selected--container div {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#ons-selected--container div p:last-child {
+    color: var(--marine-blue);
+}
+
+#final-price {
+    width: 90%;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#final-price p:last-child {
+    color: var(--purple);
+    font-size: 2.0rem;
+    font-weight: bold;
+}
+
+#final-button {
+    margin-top: 100px !important;
 }
 
 

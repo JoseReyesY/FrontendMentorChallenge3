@@ -5,7 +5,9 @@ const phoneNumberInput = document.getElementById ( 'phone-number' );
 
 // Contenedores de elementos
 const labelContainer = document.querySelectorAll ( '.label--container' );
-const planInfoContainer = document.getElementById( 'plan-info--container' );
+const planInfoContainer = document.getElementById( 'name-price--container' );
+const onsSelectedContainer = document.getElementById( 'ons-selected--container' );
+const finalPriceContainer = document.getElementById( 'final-price' );
 
 const stepContainer1 = document.getElementById( 'step1-total--container' );
 const stepContainer2 = document.getElementById( 'step2-total--container' );
@@ -16,6 +18,7 @@ const stepContainer4 = document.getElementById( 'step4-total--container' );
 const firstStepButton = document.querySelector( '.next-step-button' );
 const secondStepButton = document.getElementById( 'second-step--button' );
 const thirdStepButton = document.getElementById( 'third-step--button' );
+const thirdStepButtonYear = document.getElementById( 'third-step--button-year' );
 
 const goBackButton = document.querySelectorAll( '.back-step-button' );
 
@@ -36,9 +39,6 @@ const stepContainer2Yearly = document.getElementById( 'yearly-plan--container' )
 const stepContainer3Monthly = document.querySelector( '.step3-monthly--container' );
 const stepContainer3Yearly = document.querySelector( '.step3-yearly--container' );
 
-const stepContainer4Monthly = document.querySelector( '.step4-monthly--container' );
-const stepContainer4Yearly = document.querySelector( '.step4-yearly--container' );
-
 // Variables globales
 const plan1 = document.getElementById( 'plan1' );
 const plan2 = document.getElementById( 'plan2' );
@@ -56,7 +56,11 @@ let billing;
 
 let inputList = [];
 let checkboxList = [];
+let monthlyPlan = [];
+let yearlyPlan = [];
 let plans = [];
+let ons = [];
+let onsSelected = [];
 
 inputList.push( nameInput, emailInput, phoneNumberInput );
 checkboxList.push( onlineServicesCbMonthly, largerStorageCbMonthly, customizableProfileCbMonthly, onlineServicesCbYearly, largerStorageCbYearly, customizableProfileCbYearly );
@@ -64,6 +68,7 @@ checkboxList.push( onlineServicesCbMonthly, largerStorageCbMonthly, customizable
 firstStepButton.addEventListener( 'click', checkInputButton);
 secondStepButton.addEventListener( 'click', validatePlan );
 thirdStepButton.addEventListener( 'click', addOns );
+thirdStepButtonYear.addEventListener( 'click', addOnsYear );
 
 billingCb.addEventListener( 'click', chooseBilling );
 
@@ -89,10 +94,26 @@ class PlanYearly {
     }
 }
 
-let arcadeMonthly = new PlanMonthly('./assets/images/icon-arcade.svg', 'Arcade', '$9/mo');
-let arcadeYearly = new PlanMonthly('./assets/images/icon-arcade.svg', 'Arcade', '$90/ye');
+class OnsMonthly {
+    constructor( name, price, billing ) {
+        this.name = name;
+        this.price = price;
+        this.billing = 'Monthly'
+    }
+}
 
-plans.push( arcadeMonthly, arcadeYearly );
+let arcadeMonthly = new PlanMonthly( './assets/images/icon-arcade.svg', 'Arcade', 9 );
+let advancedMonthly = new PlanMonthly( './assets/images/icon-advanced.svg', 'Advanced', 12 );
+let arcadeYearly = new PlanYearly( './assets/images/icon-arcade.svg', 'Arcade', '$90/ye' );
+
+let onlineServicesMonthlyObj = new OnsMonthly( 'Online-Services', 1 );
+let largerStorageMonthlyObj = new OnsMonthly( 'Larger Storage', 2 );
+let customizableProfileMonthlyObj = new OnsMonthly( 'Customizable Profile', 2 );
+
+monthlyPlan.push( arcadeMonthly, advancedMonthly );
+yearlyPlan.push( arcadeYearly );
+plans.push( arcadeMonthly, arcadeYearly, advancedMonthly );
+ons.push( onlineServicesMonthlyObj, largerStorageMonthlyObj, customizableProfileMonthlyObj );
 
 
 // Funcion para checar si algun input esta vacio
@@ -195,51 +216,83 @@ function validatePlan () {
 function addOns () {
     checkboxList.forEach( ( checkbox ) => {
         if( checkbox.id === 'online-services-cb-monthly' && checkbox.checked ) {
-            console.log( 'Online Services' );
-            billing = 'Monthly';
+            onsSelected.push( onlineServicesMonthlyObj );
         } else if ( checkbox.id === 'larger-storage-cb-monthly' && checkbox.checked ) {
-            console.log( 'Larger Storage' );
-            billing = 'Monthly';
+            onsSelected.push( largerStorageMonthlyObj );
         } else if ( checkbox.id === 'customizable-profile-cb-monthly' && checkbox.checked ) {
-            console.log( 'Customizable Profile' );
-            billing = 'Monthly';
-        } else if ( checkbox.id === 'online-services-cb-yearly' && checkbox.checked ) {
-            console.log( 'Customizable Profile' );
-            billing = 'Yearly';
-        } else if ( checkbox.id === 'larger-storage-cb-yearly' && checkbox.checked ) {
-            console.log( 'Customizable Profile' );
-            billing = 'Yearly';
-        } else if ( checkbox.id === 'customizable-profile-cb-yearly' && checkbox.checked ) {
-            console.log( 'Customizable Profile' );
-            billing = 'Yearly';
-        } 
+            onsSelected.push( customizableProfileMonthlyObj );
+        }
     })
 
-    //showInfo();
-    stepContainer4Monthly.style.display = 'block';
+    billing = 'Monthly';
 
+
+    step4Go();
+
+}
+
+function addOnsYear () {
+    checkboxList.forEach( ( checkbox ) => {
+        if ( checkbox.id === 'online-services-cb-yearly' && checkbox.checked ) {
+            onsSelected.push( onlineServicesMonthlyObj );
+        } else if ( checkbox.id === 'larger-storage-cb-yearly' && checkbox.checked ) {
+            onsSelected.push( largerStorageMonthlyObj );
+        } else if ( checkbox.id === 'customizable-profile-cb-yearly' && checkbox.checked ) {
+            onsSelected.push(  );
+        } 
+    });
+
+    billing = 'Yearly';
+
+    step4Go();
+}
+
+function step4Go () {
+    stepContainer3.style.display = 'none';
+    stepContainer3Yearly.style.display = 'none'; 
+    stepContainer4.style.display = 'block';
+
+    isStep3Active = false;
+    isStep4Active = true;
+    showInfo();
 }
 
 // funcion para imprimir la informacion final
 function showInfo () {
-    stepContainer3.style.display = 'none';
+    let operation = 0;
 
     plans.forEach( (plan) => {
-        if ( plan.name === planSelected ) { 
+        if ( plan.name === planSelected && plan.billing === billing) { 
             let planInfo = `
-                <div id="name-price--container">
-                    <div>
-                        <p id="plan-name">${plan.name} (${plan.billing})</p>
-                        <a href="">Change</a>
-                    </div>
-                    <p>${plan.price}</p>
+                <div>
+                    <p id="plan-name">${plan.name} (${plan.billing})</p>
+                    <a href="">Change</a>
                 </div>
+                <p>+${plan.price}/mo</p>
             `;
             planInfoContainer.innerHTML += planInfo;
+            operation += plan.price;
         }
-        
-    } )
-    isStep4Active = true;
+    } );
+    
+    onsSelected.forEach ( ( onSelected ) => {
+        let onInfo = `
+            <div>
+                <p>${onSelected.name}</p>
+                <p>+${onSelected.price}/mo</p>
+            </div>
+        `;
+        onsSelectedContainer.innerHTML += onInfo;
+        operation += onSelected.price;
+    })
+
+    let finalPrice = `
+        <p>Total (per month)</p>
+        <p>+${operation}/mo</p>
+    `;
+
+    finalPriceContainer.innerHTML += finalPrice;
+
 }
 
 // Funcion para regresar un paso
@@ -257,25 +310,15 @@ function goBack () {
         stepContainer3.style.display = 'none'; 
         stepContainer3Yearly.style.display = 'none'; 
 
-        // checkboxList.forEach( ( checkbox ) => {
-        //     checkbox.checked = false;
-        // })
+        checkboxList.forEach( ( checkbox ) => {
+            checkbox.checked = false;
+        })
+    } else if ( isStep4Active === true ) {
+        isStep3Active = true;
+
+        stepContainer3.style.display = 'block';
+        stepContainer4.style.display = 'none';
     }
-    // if ( isStep2Active === true ) {
-    //     stepContainer1.style.display = 'block';
-    //     stepContainer2.style.display = 'none';
-    // } else if ( isStep3Active === true ) {
-    //     isStep2Active = true;
-
-    //     stepContainer2.style.display = 'block';
-    //     stepContainer3.style.display = 'none';
-
-    //     checkboxList.forEach( ( checkbox ) => {
-    //         checkbox.checked = false;
-    //     })
-    // } else if ( isStep4Active === true ) {
-    //     console.log(isStep4Active)
-    // }
 }
 
 
