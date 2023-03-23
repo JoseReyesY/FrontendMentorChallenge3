@@ -24,7 +24,8 @@ html {
 #step1--container,
 #step2--container,
 #step3--container,
-#step4--container {
+#step4--container,
+#step5--container {
     width: 70%;
     height: 650px;
     margin: 50px auto;
@@ -39,7 +40,8 @@ html {
 
 #step2-total--container,
 #step3-total--container,
-#step4-total--container {
+#step4-total--container,
+#step5-total--container {
     display: none;
 }
 
@@ -455,6 +457,10 @@ input:checked + .slider:before {
     font-size: 1.6rem;
 }
 
+#confirm--button:hover {
+    cursor: pointer;
+}
+
 #ons-selected--container div {
     margin-bottom: 10px;
     display: flex;
@@ -479,7 +485,27 @@ input:checked + .slider:before {
 }
 
 #final-button {
-    margin-top: 100px !important;
+    margin-bottom: 10px !important;
+}
+
+#step5--container .info--container {
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#final-step--image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+    display: block;
+    background-image: url('/assets/images/icon-thank-you.svg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 

@@ -8,11 +8,13 @@ const labelContainer = document.querySelectorAll ( '.label--container' );
 const planInfoContainer = document.getElementById( 'name-price--container' );
 const onsSelectedContainer = document.getElementById( 'ons-selected--container' );
 const finalPriceContainer = document.getElementById( 'final-price' );
+const onsIndividualContainer = document.querySelectorAll( '.ons-individual--container' )
 
 const stepContainer1 = document.getElementById( 'step1-total--container' );
 const stepContainer2 = document.getElementById( 'step2-total--container' );
 const stepContainer3 = document.getElementById( 'step3-total--container' );
 const stepContainer4 = document.getElementById( 'step4-total--container' );
+const stepContainer5 = document.getElementById( 'step5-total--container' );
 
 // Botones para cambiar de paso
 const firstStepButton = document.querySelector( '.next-step-button' );
@@ -21,6 +23,9 @@ const thirdStepButton = document.getElementById( 'third-step--button' );
 const thirdStepButtonYear = document.getElementById( 'third-step--button-year' );
 
 const goBackButton = document.querySelectorAll( '.back-step-button' );
+const lastGoBackButton = document.getElementById( 'last-go-back-button' );
+
+const confirmButton = document.getElementById( 'confirm--button' );
 
 // checkbox
 const billingCb = document.getElementById( 'checkbox-billing' );
@@ -69,6 +74,7 @@ firstStepButton.addEventListener( 'click', checkInputButton);
 secondStepButton.addEventListener( 'click', validatePlan );
 thirdStepButton.addEventListener( 'click', addOns );
 thirdStepButtonYear.addEventListener( 'click', addOnsYear );
+confirmButton.addEventListener( 'click', showFinalMessage );
 
 billingCb.addEventListener( 'click', chooseBilling );
 
@@ -102,17 +108,32 @@ class OnsMonthly {
     }
 }
 
+class OnsYearly {
+    constructor( name, price, billing ) {
+        this.name = name;
+        this.price = price;
+        this.billing = 'Yearly';
+    }
+}
+
 let arcadeMonthly = new PlanMonthly( './assets/images/icon-arcade.svg', 'Arcade', 9 );
 let advancedMonthly = new PlanMonthly( './assets/images/icon-advanced.svg', 'Advanced', 12 );
-let arcadeYearly = new PlanYearly( './assets/images/icon-arcade.svg', 'Arcade', '$90/ye' );
+let proMonthly = new PlanMonthly( './assets/images/icon-pro.svg', 'Pro', 15 );
+
+let arcadeYearly = new PlanYearly( './assets/images/icon-arcade.svg', 'Arcade', 90 );
+let advancedYearly = new PlanYearly( './assets/images/icon-advanced.svg', 'Advanced', 120 );
+let proYearly = new PlanYearly( './assets/images/icon-pro.svg', 'Pro', 150 );
 
 let onlineServicesMonthlyObj = new OnsMonthly( 'Online-Services', 1 );
 let largerStorageMonthlyObj = new OnsMonthly( 'Larger Storage', 2 );
 let customizableProfileMonthlyObj = new OnsMonthly( 'Customizable Profile', 2 );
+let onlineServicesYearlyObj = new OnsYearly( 'Online-Services', 10 );
+let largerStorageYearlyObj = new OnsYearly( 'Larger Storage', 20 );
+let customizableProfileYearlyObj = new OnsYearly( 'Customizable Profile', 20 );
 
-monthlyPlan.push( arcadeMonthly, advancedMonthly );
-yearlyPlan.push( arcadeYearly );
-plans.push( arcadeMonthly, arcadeYearly, advancedMonthly );
+monthlyPlan.push( arcadeMonthly, advancedMonthly, proMonthly );
+yearlyPlan.push( arcadeYearly, advancedYearly, proYearly );
+plans.push( arcadeMonthly, arcadeYearly, advancedMonthly, advancedYearly, proMonthly, proYearly );
 ons.push( onlineServicesMonthlyObj, largerStorageMonthlyObj, customizableProfileMonthlyObj );
 
 
@@ -163,15 +184,21 @@ function checkInputButton () {
 
 // Funcion para escoger un plan y su tipo de pago
 function choosePlan () {
-    if ( plan1.checked || plan4.cheked) {
+    if ( plan1.checked ) {
         planSelected = 'Arcade';
-    } else if ( plan2.checked || plan5.checked ) {
+    } else if ( plan2.checked ) {
         planSelected = 'Advanced';
-    } else if ( plan3.checked || plan6.checked) {
+    } else if ( plan3.checked ) {
+        planSelected = 'Pro';
+    } else if (  plan4.checked ) {
+        planSelected = 'Arcade';
+    } else if (  plan5.checked ) {
+        planSelected = 'Advanced';
+    } else if (  plan6.Pro ) {
         planSelected = 'Pro';
     }
 }
-
+        
 // funcion para escoger el tipo de pago
 function chooseBilling () {
     let monthlyPlanContainer = document.getElementById( 'monthly-plan--container' );
@@ -182,12 +209,18 @@ function chooseBilling () {
     // Mostrar los diferentes tipos de ons dependiendo del tipo de facturacion
     if ( !billingCb.checked ) {
         billing = 'Monthly';
+        plan4.checked = false;
+        plan5.checked = false;
+        plan6.checked = false;
         yearlyPlanContainer.classList.add( 'hide' );
         monthlyPlanContainer.classList.remove( 'hide' );
         monthlyP.style.color = 'hsl(213, 96%, 18%)';
         yearlyP.style.color = 'hsl(231, 11%, 63%)';
     } else if ( billingCb.checked ){
         billing = 'Yearly';
+        plan1.checked = false;
+        plan2.checked = false;
+        plan3.checked = false;
         monthlyPlanContainer.classList.add( 'hide' );
         yearlyPlanContainer.classList.remove( 'hide' );
         yearlyP.style.color = 'hsl(213, 96%, 18%)';
@@ -226,7 +259,6 @@ function addOns () {
 
     billing = 'Monthly';
 
-
     step4Go();
 
 }
@@ -234,11 +266,11 @@ function addOns () {
 function addOnsYear () {
     checkboxList.forEach( ( checkbox ) => {
         if ( checkbox.id === 'online-services-cb-yearly' && checkbox.checked ) {
-            onsSelected.push( onlineServicesMonthlyObj );
+            onsSelected.push( onlineServicesYearlyObj );
         } else if ( checkbox.id === 'larger-storage-cb-yearly' && checkbox.checked ) {
-            onsSelected.push( largerStorageMonthlyObj );
+            onsSelected.push( largerStorageYearlyObj );
         } else if ( checkbox.id === 'customizable-profile-cb-yearly' && checkbox.checked ) {
-            onsSelected.push(  );
+            onsSelected.push( customizableProfileYearlyObj );
         } 
     });
 
@@ -260,6 +292,16 @@ function step4Go () {
 // funcion para imprimir la informacion final
 function showInfo () {
     let operation = 0;
+    let wordBilling;
+    let abbrevation;
+
+    if ( billing === 'Monthly' ) {
+        wordBilling = 'month';
+        abbrevation = 'mo';
+    } else {
+        wordBilling = 'year';
+        abbrevation = 'yr';
+    }
 
     plans.forEach( (plan) => {
         if ( plan.name === planSelected && plan.billing === billing) { 
@@ -268,18 +310,18 @@ function showInfo () {
                     <p id="plan-name">${plan.name} (${plan.billing})</p>
                     <a href="">Change</a>
                 </div>
-                <p>+${plan.price}/mo</p>
+                <p>+${plan.price}/${ abbrevation }</p>
             `;
             planInfoContainer.innerHTML += planInfo;
             operation += plan.price;
         }
     } );
-    
+
     onsSelected.forEach ( ( onSelected ) => {
         let onInfo = `
-            <div>
-                <p>${onSelected.name}</p>
-                <p>+${onSelected.price}/mo</p>
+            <div class="ons-individual--container">
+                <p>${ onSelected.name }</p>
+                <p>+${ onSelected.price }/${ abbrevation }</p>
             </div>
         `;
         onsSelectedContainer.innerHTML += onInfo;
@@ -287,12 +329,22 @@ function showInfo () {
     })
 
     let finalPrice = `
-        <p>Total (per month)</p>
-        <p>+${operation}/mo</p>
+        <p>Total (per ${ wordBilling })</p>
+        <p>+${ operation }/${ abbrevation }</p>
     `;
 
     finalPriceContainer.innerHTML += finalPrice;
+}
 
+function deleteItems () {
+    planInfoContainer.innerHTML = '';
+    onsSelectedContainer.innerHTML = '';
+    finalPriceContainer.innerHTML = '';
+}
+
+function showFinalMessage () {
+    stepContainer4.style.display = 'none';
+    stepContainer5.style.display = 'block';
 }
 
 // Funcion para regresar un paso
@@ -313,11 +365,20 @@ function goBack () {
         checkboxList.forEach( ( checkbox ) => {
             checkbox.checked = false;
         })
+
     } else if ( isStep4Active === true ) {
         isStep3Active = true;
 
-        stepContainer3.style.display = 'block';
+        onsSelected = [];
+        deleteItems();
+
+        if ( billing === 'Monthly' ) {
+            stepContainer3Monthly.style.display = 'block';
+        } else {
+            stepContainer3Yearly.style.display = 'block';
+        }
         stepContainer4.style.display = 'none';
+
     }
 }
 
